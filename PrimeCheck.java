@@ -1,33 +1,51 @@
-public class PrimeCheck {
-  /**
-   * @param number that is tested
-   * @return true if number is prime, false otherwise
-   */
-  public static boolean isPrime(int number) {
-    // trivial reject
-    if (number < 2) {
-      return false;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+public class PrimeCheckTest {
+  // --------------------------------------------------------------- //
+  @Test
+  public void TestNegativeNumbers() {
+    for (int i = -10; i < 0; ++i) {
+      assertEquals("Test negative number " + i, false, PrimeCheck.isPrime(i));
     }
-    // 2 is prime by definition
-    if (number == 2) {
-      return true;
-    }
-    // check even numbers
-    if (number % 2 == 0) {
-      return false;
-    }
-    // check odd numbers
-    for (int i = 3; (i * i) <= number; ++i) {
-      if (number % i == 0)
-        return false;
-    }
-    return true;
   }
 
-  public static void main(String[] args) {
-    for (int i = 0; i < 50; ++i) {
-      if (isPrime(i))
-        System.out.println(i + " is prime");
-    }
+  // --------------------------------------------------------------- //
+  @Test
+  public void TestEdgeCases() {
+    assertEquals("Test 0", false, PrimeCheck.isPrime(0));
+    assertEquals("Test 1", false, PrimeCheck.isPrime(1));
+    assertEquals("Test 2", true, PrimeCheck.isPrime(2));
+  }
+
+  // --------------------------------------------------------------- //
+  @Test
+  public void testPrimes() {
+    assertEquals("Test 3", true, PrimeCheck.isPrime(3));
+    assertEquals("Test 5", true, PrimeCheck.isPrime(5));
+    assertEquals("Test 7", true, PrimeCheck.isPrime(7));
+    assertEquals("Test 11", true, PrimeCheck.isPrime(11));
+    assertEquals("Test 13", true, PrimeCheck.isPrime(13));
+    assertEquals("Test 17", true, PrimeCheck.isPrime(17));
+    assertEquals("Test 19", true, PrimeCheck.isPrime(19));
+    assertEquals("Test 23", true, PrimeCheck.isPrime(23));
+    assertEquals("Test 29", true, PrimeCheck.isPrime(29));
+    assertEquals("Test 31", true, PrimeCheck.isPrime(31));
+    assertEquals("Test 47", true, PrimeCheck.isPrime(47));
+  }
+
+  // --------------------------------------------------------------- //
+  @Test
+  public void testNonPrimes() {
+    assertEquals("Test 4", false, PrimeCheck.isPrime(4));
+    assertEquals("Test 6", false, PrimeCheck.isPrime(6));
+    assertEquals("Test 8", false, PrimeCheck.isPrime(8));
+    assertEquals("Test 9", false, PrimeCheck.isPrime(9));
+    assertEquals("Test 10", false, PrimeCheck.isPrime(10));
+    assertEquals("Test 12", false, PrimeCheck.isPrime(12));
+    assertEquals("Test 15", false, PrimeCheck.isPrime(15));
+    assertEquals("Test 21", false, PrimeCheck.isPrime(21));
+    assertEquals("Test 25", false, PrimeCheck.isPrime(25));
+    assertEquals("Test 49", false, PrimeCheck.isPrime(49));
   }
 }
